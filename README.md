@@ -14,3 +14,15 @@ The web application
   
 # An event/period/group viewer editor
   Allow to view or edit more info
+
+# Event fields
+- PiT (point in time) representation
+- Accuracy
+- Name/title
+- Short description
+- Domain/type: politic, human, disaster, scientific,...
+- Subdomain/subtype: economic, social, physic, geologic,...
+- Point in space of the event, if any
+- The scope of the event, if any:  
+  If an event is worldwide, it will be shown whatever the search place is set to.  
+  If it takes place in the USA, it won't be shown when the search place is set to England.

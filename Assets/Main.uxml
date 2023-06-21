@@ -1,0 +1,37 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Main.uss?fileID=7433441132597879392&amp;guid=02c90e2201c6ae549aee209d3f0e6b39&amp;type=3#Main" />
+    <ui:VisualElement name="Ribbon" style="background-color: rgb(64, 64, 64); flex-direction: row; align-self: auto; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; justify-content: flex-start;">
+        <ui:Button text="New" display-tooltip-when-elided="true" name="NewTimeline" class="ribbonBigButton" />
+        <ui:Button text="Open" display-tooltip-when-elided="true" name="OpenTimeline" class="ribbonBigButton" />
+        <ui:Button text="Save" display-tooltip-when-elided="true" name="SaveTimeline" class="ribbonBigButton" />
+        <ui:VisualElement name="EventRibbon" style="flex-direction: row-reverse;">
+            <ui:GroupBox name="Group" text="Group" class="ribbonGroup">
+                <ui:VisualElement class="ribbonGroupVE">
+                    <ui:Button text="Add" display-tooltip-when-elided="true" name="Add" class="ribbonSmallButton" />
+                    <ui:Button text="Add" display-tooltip-when-elided="true" name="Edit" class="ribbonSmallButton" />
+                    <ui:Button text="Delete" display-tooltip-when-elided="true" name="Delete" class="ribbonSmallButton" />
+                </ui:VisualElement>
+            </ui:GroupBox>
+            <ui:GroupBox name="Period" text="Period" class="ribbonGroup">
+                <ui:VisualElement class="ribbonGroupVE">
+                    <ui:Button text="Add" display-tooltip-when-elided="true" name="Add" class="ribbonSmallButton" />
+                    <ui:Button text="Add" display-tooltip-when-elided="true" name="Edit" class="ribbonSmallButton" />
+                    <ui:Button text="Delete" display-tooltip-when-elided="true" name="Delete" class="ribbonSmallButton" />
+                </ui:VisualElement>
+            </ui:GroupBox>
+            <ui:GroupBox text="Event" name="Event" class="ribbonGroup">
+                <ui:VisualElement class="ribbonGroupVE">
+                    <ui:Button text="Add" display-tooltip-when-elided="true" name="Add" class="ribbonSmallButton" />
+                    <ui:Button text="Edit" display-tooltip-when-elided="true" name="Edit" class="ribbonSmallButton" />
+                    <ui:Button text="Delete" display-tooltip-when-elided="true" name="Delete" class="ribbonSmallButton" />
+                </ui:VisualElement>
+            </ui:GroupBox>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+        <ui:ScrollView name="TimelineScrollView" style="height: 100%;">
+            <ui:Scroller value="5" name="InfiniteScroller" high-value="10" direction="Horizontal" />
+            <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

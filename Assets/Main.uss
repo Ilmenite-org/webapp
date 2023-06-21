@@ -1,0 +1,39 @@
+.ribbonBigButton {
+    width: 64px;
+    height: 64px;
+    overflow: hidden;
+    background-color: rgb(136, 136, 136);
+    border-color: rgb(116, 116, 116);
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.ribbonSmallButton {
+    overflow: hidden;
+    background-color: rgb(136, 136, 136);
+    border-color: rgb(116, 116, 116);
+    border-width: 1px;
+    border-radius: 3px;
+    width: 75px;
+    font-size: 12px;
+    height: 25px;
+}
+
+.ribbonGroup {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-left-color: rgba(0, 0, 0, 0.5);
+    border-left-width: 1px;
+}
+
+.ribbonGroup > Label {
+    color: rgb(223, 223, 223);
+}
+
+.ribbonGroupVE {
+    flex-direction: row;
+}

@@ -2,7 +2,6 @@
     width: 64px;
     height: 64px;
     overflow: hidden;
-    background-color: rgb(136, 136, 136);
     border-color: rgb(116, 116, 116);
     border-width: 1px;
     border-radius: 3px;
@@ -10,7 +9,6 @@
 
 .ribbonSmallButton {
     overflow: hidden;
-    background-color: rgb(136, 136, 136);
     border-color: rgb(116, 116, 116);
     border-width: 1px;
     border-radius: 3px;
@@ -36,4 +34,36 @@
 
 .ribbonGroupVE {
     flex-direction: row;
+}
+
+#InfiniteScrollbar #unity-tracker {
+    opacity: 0;
+    top: 7px;
+    height: 16px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#InfiniteScrollbar:hover #unity-tracker {
+    opacity: 1;
+    transition-property: opacity;
+    transition-duration: 500ms;
+}
+
+.unity-button:hover {
+    background-color: rgb(231, 231, 231);
+    transition-property: background-color;
+    transition-duration: 300ms;
+}
+
+#InfiniteScrollbar #unity-dragger {
+    height: 16px;
+    top: 16px;
+    width: 10%;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
 }

@@ -10,8 +10,12 @@ namespace Ilmenite
     {
         private List<Event> Events = new List<Event>();
         private ScrollView svTimeline;
+        private Slider slider;
 
-        private const string INFINITE_SCROLLER = "InfiniteScroller";
+        private Label temp_label;
+        private long temp_value = 0;
+        private bool temp_sliding_time = false;
+        private DateTime temp_last_update;
 
         private void OnEnable()
         {
@@ -31,18 +35,53 @@ namespace Ilmenite
 
             svTimeline = root.Q<ScrollView>("TimelineScrollView");
 
-            var infiniteScroller = root.Q<Scroller>(INFINITE_SCROLLER);
-            infiniteScroller.lowValue = 0f;
-            infiniteScroller.highValue = 1f;
-            infiniteScroller.value = .5f;
-            infiniteScroller.RegisterCallback<MouseUpEvent>(ResetSlider);
-            infiniteScroller.Q("unity-tracker").pickingMode = PickingMode.Ignore;
-            infiniteScroller.Q("unity-tracker").SetEnabled(false);
+            slider = root.Q<Slider>("InfiniteScrollbar");
+            slider.RegisterCallback<MouseCaptureOutEvent>(ResetSlider);
+            slider.RegisterValueChangedCallback(ApplyScrollTime);
+
+            temp_label = root.Q<Label>("Temp");
         }
 
-        private void ResetSlider(MouseUpEvent e)
+        private void ApplyScrollTime(ChangeEvent<float> e)
         {
-            svTimeline.Q<Scroller>(INFINITE_SCROLLER).value = .5f;
+            if (e.newValue == 6f)
+            {
+                temp_sliding_time = false;
+                CancelInvoke();
+            }
+            else if (!temp_sliding_time)
+            {
+                temp_sliding_time = true;
+                temp_last_update = DateTime.Now;
+                InvokeRepeating("MoveTimeView", 0f, 1f / 60f);
+            }
+        }
+
+        private void MoveTimeView()
+        {
+            var x = slider.value;
+            var interval = 16f / Mathf.Abs(x - 6f) - Mathf.Floor(Mathf.Abs(x - 6f) - (x / 100000f));   // 16ms = ~60Hz
+            var now = DateTime.Now;
+            if (temp_last_update.AddMilliseconds(interval) < now)
+            {
+                if (x == 6f)
+                {
+                    temp_last_update = now;
+                    return;
+                }
+
+                var k = Math.Pow(1000d, Math.Floor(Math.Abs(x - 6d))) * ((x - 6d) / Math.Abs(x - 6d));  // multiplier 1/1,000/1,000,000/1,000,000,000/10^12/10^15
+                temp_value += (long)k;
+
+                temp_label.text = temp_value.ToString();
+                temp_last_update = now;
+            }
+        }
+
+        private void ResetSlider(MouseCaptureOutEvent e)
+        {
+            CancelInvoke();
+            slider.value = 6f;
         }
 
         private void AddEvent()
